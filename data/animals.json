@@ -108,6 +108,16 @@
         "hungry"
       ],
       "id": "10"
+    },
+    {
+      "name": "Carlo",
+      "species": "Spider",
+      "diet": "omnivore",
+      "personalityTraits": [
+        "anxious",
+        "goofy"
+      ],
+      "id": "11"
     }
   ]
 }

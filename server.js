@@ -17,6 +17,9 @@ const PORT = process.env.PORT || 3001;
 //instantiate the server
 const app = express();
 
+//brings in frontend code css and js for styling
+//static makes these files resources to the server
+app.use(express.static("public"));
 // parse incoming string or array data
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
@@ -134,6 +137,26 @@ app.post("/api/animals", (req, res) => {
     const animal = createNewAnimal(req.body, animals);
     res.json(animal);
   }
+});
+
+//index.js to be served from Express.js server
+// '/' brings us to the homepage
+// This GET route brings us to the homepage
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
+});
+
+app.get("/animals", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/animals.html"));
+});
+
+app.get("/zookeepers", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/zookeepers.html"));
+});
+
+//wildcard routes or pages if a user makes a request for a page that doesn't exist
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 
 //tell it to listen for request
